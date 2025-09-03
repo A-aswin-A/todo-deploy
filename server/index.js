@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: 'https://todo-list-delta-seven.vercel.app', // your React dev server
+  origin: process.env.CLIENTPORT, // your React dev server
   credentials: true
 }));
 
