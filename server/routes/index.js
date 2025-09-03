@@ -5,7 +5,7 @@ const connectDB = require('../config/db');
 router.get('/', async (req, res) => {
   try {
     const db = await connectDB();
-    const tasks = await db.collection('myTasks').find().toArray();
+    const tasks = await db.collection('todo_data').find().toArray();
     res.json(tasks);
   } catch (err) {
     console.error('Error fetching tasks:', err);
@@ -18,7 +18,7 @@ router.get('/edit/:id', async (req, res) => {
 
   try{
     const db = await connectDB();
-    const taskItem = await db.collection('myTasks').findOne({_id: taskId})
+    const taskItem = await db.collection('todo_data').findOne({_id: taskId})
     res.json(taskItem);
   } catch (err) {
     console.error('Error fetching tasks:', err);
@@ -34,7 +34,7 @@ router.post('/edit/:id', async (req, res) => {
   try {
     const db = await connectDB();
 
-    const result = await db.collection('myTasks').updateOne(
+    const result = await db.collection('todo_data').updateOne(
       { _id: taskId },
       { $set: { task: newTaskName } }
     );
@@ -62,7 +62,7 @@ router.delete('/delete/:id', async (req, res) => {
   try {
     const db = await connectDB();
 
-    const result = await db.collection('myTasks').deleteOne({ _id: taskId })
+    const result = await db.collection('todo_data').deleteOne({ _id: taskId })
     console.log("result", result)
 
     if (result.matchedCount === 0) {
@@ -86,7 +86,7 @@ router.post('/addTask', async (req, res) => {
 
   try {
     const db = await connectDB();
-    const accessCollection = await db.collection('myTasks');
+    const accessCollection = await db.collection('todo_data');
     const count = await accessCollection.countDocuments();
 
     const result = await accessCollection.insertOne({_id: `task_${count + 1}`, task: newTaskName})
