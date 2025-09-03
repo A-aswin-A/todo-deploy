@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 
-const serverUrl = "http://localhost:5000/"
+const serverUrl = "https://todo-server-nocl.onrender.com/"
 
 function Todo() {
   const navigate = useNavigate();
