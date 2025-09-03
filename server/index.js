@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: 'http://localhost:3000', // your React dev server
+  origin: 'https://todo-list-delta-seven.vercel.app', // your React dev server
   credentials: true
 }));
 
